@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package com.fourscreen.test.types.transport.message;
+
+option java_multiple_files = true;
+
+message Transaction {
+  string offer_id = 1;
+  string transaction_id = 2;
+  Offer offer = 3;
+  Supplier Supplier = 4;
+  MetaInfo meta_info = 5;
+  Event event = 6;
+}
+
+message Offer {
+
+  optional string poi_id = 1;
+  optional string region_id = 2;
+  string campaign_id = 3;
+  string ad_format = 4;
+  int64 expiry_date = 5;
+  string currency = 6;
+  string bid = 7;
+  string demand_organization_id = 8;
+  int64 created_on = 9;
+  double requested_latitude = 10;
+  double requested_longitude = 11;
+}
+
+message Supplier {
+  string organization_id = 1;
+  string user_id = 2;
+}
+
+message MetaInfo {
+  repeated string requested_targets = 1;
+  repeated string reported_targets = 2;
+}
+
+message Event {
+  EventType type = 1;
+  ScreenType screen_type = 2;
+  int64 timestamp = 3;
+}
+
+enum EventType {
+  SHOWN = 0;
+  CLICKED = 1;
+  NAVIGATION_STARTED = 2;
+  NAVIGATION_ABORTED = 3;
+  DESTINATION_REACHED = 4;
+  CLOSED_BY_USER = 5;
+  CLOSED_DUE_TO_TIMEOUT = 6;
+  THUMBS_DOWN = 7;
+  THUMBS_UP = 8;
+}
+
+enum ScreenType {
+  SEARCH_LIST = 0;
+  SEARCH_FOLLOW_UP_SCREEN = 1;
+  DETAILS_SCREEN = 2;
+  WELCOME_SCREEN = 3;
+  GOODBYE_SCREEN = 4;
+  MAP_VIEW = 5;
+}
